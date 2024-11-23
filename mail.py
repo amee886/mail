@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import smtplib
 load_dotenv()
 yandex_login=os.getenv("LOGIN")
+yandex_login2="nemleinikita@yandex.ru"
 yandex_password=os.getenv("PASSWORD")
 server =smtplib.SMTP_SSL('smtp.yandex.ru:465')
 server.login(yandex_login,yandex_password)
@@ -36,5 +37,5 @@ Content-Type: text/plain; charset='UTF-8';
 
 {text_letter}'''.format(text_letter=text_letter)
 letter=letter.encode('UTF-8')
-server.sendmail('ame886@yandex.ru','nemleinikita@yandex.ru',letter)
+server.sendmail(yandex_login,yandex_login2,letter)
 server.quit()
