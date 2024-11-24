@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import smtplib
 load_dotenv()
 yandex_login=os.getenv("LOGIN")
-yandex_login2="nemleinikita@yandex.ru"
+yandex_loginto="nemleinikita@yandex.ru"
 yandex_password=os.getenv("PASSWORD")
 server =smtplib.SMTP_SSL('smtp.yandex.ru:465')
 server.login(yandex_login,yandex_password)
@@ -30,12 +30,12 @@ text_letter=text_letter.replace("%website%",tex_invitation)
 text_letter=text_letter.replace("%friend_name%",name_to)
 text_letter=text_letter.replace("%my_name%",name_from)
 letter='''\
-From: ame886@yandex.ru
-To: nemleinikita@yandex.ru
+From: {yandex_login}
+To: {yandex_loginto}
 Subject: Важно!
 Content-Type: text/plain; charset='UTF-8';
 
-{text_letter}'''.format(text_letter=text_letter)
+{text_letter}'''.format(text_letter=text_letter,yandex_login=yandex_login,yandex_loginto=yandex_loginto)
 letter=letter.encode('UTF-8')
-server.sendmail(yandex_login,yandex_login2,letter)
+server.sendmail(yandex_login,yandex_loginto,letter)
 server.quit()
